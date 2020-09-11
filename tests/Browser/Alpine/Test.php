@@ -74,7 +74,7 @@ class Test extends TestCase
                  */
                 ->waitForLivewire(function ($b) {
                     $b->click('@lob.reset');
-                    $b->assertSeeIn('@lob.output', '6');
+                    $b->assertSeeInExact('@lob.output', '6');
                 })
                 ->pause(500)
                 ->assertMissing('#livewire-error')

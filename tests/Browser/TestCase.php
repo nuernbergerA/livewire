@@ -225,6 +225,23 @@ class TestCase extends BaseTestCase
             return $this;
         });
 
+        Browser::macro('assertSeeInExact', function ($selector, $expected)
+        {
+            /** @var \Laravel\Dusk\Browser $this */
+            $fullSelector = $this->resolver->format($selector);
+
+            $element = $this->resolver->findOrFail($selector);
+            $actual = $element->getText();
+
+            PHPUnit::assertEquals(
+                $expected,
+                $actual,
+                "[{$expected}] != [{$actual}] within element [{$fullSelector}]."
+            );
+
+            return $this;
+        });
+
         Browser::macro('assertClassMissing', function ($selector, $className) {
             /** @var \Laravel\Dusk\Browser $this */
             $fullSelector = $this->resolver->format($selector);
