@@ -27,7 +27,7 @@ class Component extends BaseComponent
     public function updatingCount($value)
     {
         if (isset($_SERVER['CI'])) {
-            if ($value === 100) sleep(2);
+            if ($value === 100) sleep(5);
         }
 
         if ($this->count === 100) throw new \Exception('"count" shouldnt already be "100". This means @entangle made an extra request after Livewire set the data.');
