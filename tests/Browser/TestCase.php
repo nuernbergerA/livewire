@@ -107,7 +107,7 @@ class TestCase extends BaseTestCase
                 resource_path('views'),
             ]);
 
-            config()->set('app.debug', true);
+            app('config')->set('app.debug', true);
         });
     }
 
