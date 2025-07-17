@@ -31,6 +31,8 @@ class EnumSynth extends Synth {
 
         $class = $meta['class'];
 
+        if ($value instanceof $class) return $value;
+
         return $class::from($value);
     }
 }
