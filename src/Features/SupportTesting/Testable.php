@@ -186,6 +186,8 @@ class Testable
             return $this->upload($name, $value, $isMultiple = true);
         } elseif ($value instanceof BackedEnum) {
             $value = $value->value;
+        } elseif (is_array($value)) {
+            $value = array_map(fn($item) => $item instanceof BackedEnum ? $item->value: $item, $value);
         }
 
         return $this->update(updates: [$name => $value]);

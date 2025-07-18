@@ -44,11 +44,13 @@ class EnumUnitTest extends \Tests\TestCase
     {
         Livewire::test(ComponentWithEnumArray::class)
             ->set('list', [ValidatedEnum::TEST])
-            ->assertSet('list', [ValidatedEnum::TEST])
+            ->assertSet('list', [ValidatedEnum::TEST->value])
             ->set('list', [ValidatedEnum::BAR])
-            ->assertSet('list', [ValidatedEnum::BAR])
+            ->assertSet('list', [ValidatedEnum::BAR->value])
             ->set('list', [ValidatedEnum::BAR, ValidatedEnum::TEST])
-            ->assertSet('list', [ValidatedEnum::BAR, ValidatedEnum::TEST])
+            ->assertSet('list', [ValidatedEnum::BAR->value, ValidatedEnum::TEST->value])
+            ->set('list', [])
+            ->assertSet('list', [])
         ;
     }
 }
