@@ -19,6 +19,18 @@ class CarbonSynthUnitTest extends \Tests\TestCase
         $testable->updateProperty('date', 'Bad Date');
     }
 
+    public function test_timezone_summertime()
+    {
+        $date = Carbon::parse('2025-10-25 23:00:00', 'CEST');
+        $this->assertEquals('CEST', $date->format('T'));
+
+        $testable = Livewire::test(ComponentWithPublicCarbonCaster::class, ['date' => $date])
+            // trigger carbon synth
+            ->refresh();
+
+        $this->assertEquals('CEST', $testable->get('date')->format('T'));
+    }
+
     public function test_public_nullable_carbon_properties_can_be_cast()
     {
         $testable = Livewire::test(ComponentWithNullablePublicCarbonCaster::class)
